@@ -1,30 +1,17 @@
-package com.company;
+package main.java.networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class Main {
+public class Sockets {
 
-    public static void main(String[] args) throws IOException {
-        urlExample();
-    }
-
-    private static void urlExample() throws IOException {
-        URL url = new URL("https://bash.im");
-        URLConnection connection = url.openConnection();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
-        }
-    }
-
-    private static void socketExample() throws IOException {
+    public void socketExample() throws IOException {
         Socket socket = new Socket("http://localhost", 8080);
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
@@ -37,8 +24,7 @@ public class Main {
         }
     }
 
-
-    private static void datagramExample() throws IOException {
+    public void datagramExample() throws IOException {
         DatagramSocket socket = new DatagramSocket();
         byte[] data = new byte[1024];
 
@@ -46,7 +32,7 @@ public class Main {
         socket.send(packet);
     }
 
-    private static void serverExample() throws IOException {
+    public void serverExample() throws IOException {
         int serverPort = 8080;
         ServerSocket serverSocket = new ServerSocket(serverPort);
         System.out.println("Server socket created on " + serverPort);
@@ -56,5 +42,3 @@ public class Main {
         }
     }
 }
-
-
