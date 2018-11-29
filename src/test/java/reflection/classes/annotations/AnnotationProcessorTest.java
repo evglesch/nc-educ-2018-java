@@ -17,6 +17,4 @@ public class AnnotationProcessorTest {
 
         Assert.assertNotNull(someClass.getSomeClassToInjection());
     }
-
-
 }
