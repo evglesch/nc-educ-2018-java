@@ -12,7 +12,8 @@ public class AnnotationProcessorTest {
         SomeClass someClass = new SomeClass();
         Assert.assertNull(someClass.getSomeClassToInjection());
 
-        AnnotationProcessor annotationProcessor = new AnnotationProcessor("reflection/classes");
+        AnnotationProcessor annotationProcessor = new AnnotationProcessor(
+                "reflection/classes");
         annotationProcessor.injectDependencies(someClass);
 
         Assert.assertNotNull(someClass.getSomeClassToInjection());

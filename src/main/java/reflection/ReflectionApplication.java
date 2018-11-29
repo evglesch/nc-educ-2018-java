@@ -1,7 +1,7 @@
 package reflection;
 
 import reflection.classes.SomeClass;
-import reflection.classes.annotations.AnnotationProcessor;
+import reflection.classes.annotations.AnnotationProcessor2;
 
 public class ReflectionApplication {
 
@@ -11,7 +11,9 @@ public class ReflectionApplication {
         someClass.test();
 
         // --- use annotation processor
-        AnnotationProcessor annotationProcessor = new AnnotationProcessor("reflection/classes");
+        AnnotationProcessor2 annotationProcessor =
+                new AnnotationProcessor2(
+                        "reflection/classes");
         annotationProcessor.injectDependencies(someClass);
 
         // --- test after magic is done
