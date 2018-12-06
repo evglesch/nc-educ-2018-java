@@ -8,9 +8,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DatabaseDriver {
+public class PostgresDriverManager {
 
-    public static Connection openPostgresConnection() {
+    public Connection openPostgresConnection() {
         try {
             Driver driver = createPostgresDriver();
             DriverManager.registerDriver(driver);
@@ -32,11 +32,11 @@ public class DatabaseDriver {
         return null;
     }
 
-    private static Driver createPostgresDriver() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    private Driver createPostgresDriver() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         return (Driver) Class.forName("org.postgresql.Driver").newInstance();
     }
 
-    private static Properties loadProperties() {
+    private Properties loadProperties() {
         String resourceName = "postgres.properties";
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Properties properties = new Properties();
@@ -48,7 +48,7 @@ public class DatabaseDriver {
         return properties;
     }
 
-    private static Connection getConnection(Properties properties) {
+    private Connection getConnection(Properties properties) {
         try {
             return DriverManager.getConnection(properties.getProperty("url"), properties);
         } catch (SQLException e) {
