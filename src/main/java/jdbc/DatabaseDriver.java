@@ -1,8 +1,7 @@
 package jdbc;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -38,9 +37,11 @@ public class DatabaseDriver {
     }
 
     private static Properties loadProperties() {
+        String resourceName = "postgres.properties";
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Properties properties = new Properties();
-        try {
-            properties.load(new BufferedReader(new FileReader("postgres.properties")));
+        try (InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+            properties.load(resourceStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
